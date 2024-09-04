@@ -229,57 +229,57 @@ end
 local Queued = false
 local MadeBefore = Leaderstats:WaitForChild("Money").Value
 
--- local function ServerSwitch()
--- 	if not Queued then
--- 		Queued = true
+local function ServerSwitch()
+	if not Queued then
+		Queued = true
 
--- 		local ScriptFile = GetDirectory() .. "/AutoCrateLoader.lua"
--- 		local ScriptSaved = game:HttpGet("https://farmhub.lol/AutoCratePaid.lua")
--- 		SaveFile(tostring(ScriptFile), ScriptSaved)
--- 		SaveFile("AutoCrateSettings.json", HttpService:JSONEncode(Settings))
+		local ScriptFile = GetDirectory() .. "/AutoCrateLoader.lua"
+		local ScriptSaved = game:HttpGet("https://raw.githubusercontent.com/Unknownusername700/Jay/main/Jaykio")
+		SaveFile(tostring(ScriptFile), ScriptSaved)
+		SaveFile("AutoCrateSettings.json", HttpService:JSONEncode(Settings))
 
--- 		local Queue = [[getgenv().StartingMoney = ]] .. getgenv().StartingMoney .. [[
--- 			getgenv().StartingTime = ]] .. getgenv().StartingTime .. [[
--- 			script_key = "]] .. script_key .. [[";
--- 			local success, error = pcall(function()
--- 				loadstring(readfile("]] .. tostring(ScriptFile) .. [["))()
--- 			end)
+		local Queue = [[getgenv().StartingMoney = ]] .. getgenv().StartingMoney .. [[
+			getgenv().StartingTime = ]] .. getgenv().StartingTime .. [[
+			script_key = "]] .. script_key .. [[";
+			local success, error = pcall(function()
+				loadstring(readfile("]] .. tostring(ScriptFile) .. [["))()
+			end)
 
--- 			if not success then
--- 				if not game:IsLoaded() then 
--- 					game.Loaded:Wait() 
--- 					task.wait(1) 
--- 				end
+			if not success then
+				if not game:IsLoaded() then 
+					game.Loaded:Wait() 
+					task.wait(1) 
+				end
 
--- 				loadstring(game:HttpGet("https://farmhub.lol/AutoCratePaid.lua"))()
--- 			end
--- 		]]
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Unknownusername700/Jay/main/Jaykio"))()
+			end
+		]]
 
--- 		queue_on_teleport(Queue)
+		queue_on_teleport(Queue)
 
--- 		-- DOWN ATM
--- 		-- pcall(function()
--- 		-- 	local MoneyMadeServer = Leaderstats:WaitForChild("Money").Value - MadeBefore
+		-- DOWN ATM
+		-- pcall(function()
+		-- 	local MoneyMadeServer = Leaderstats:WaitForChild("Money").Value - MadeBefore
 
--- 		-- 	if MoneyMadeServer ~= 0 then
--- 		-- 		local Request = http_request or request or (http and http.request)
--- 		-- 		Request({
--- 		-- 			Url = "https://discord.com/api/webhooks/1246290792360706174/AfqWZhO6k5Iy84_qrKKWbd_4VK_0ctalhw6LTReXIsytVIVyBCTW8JYgpXrd6ACuSVTE", 
--- 		-- 			Body = HttpService:JSONEncode({
--- 		-- 				["content"] = "A user just earned **$" .. FormatCash(MoneyMadeServer) .. " <:cash:1246291552423247892>**"
--- 		-- 			}), 
--- 		-- 			Method = "POST", 
--- 		-- 			Headers = {
--- 		-- 				["Content-Type"] = "application/json",
--- 		-- 			}
--- 		-- 		})
--- 		-- 		Request({
--- 		-- 			Url = "https://api.farmhub.lol/v1/research/money/update?access_token=farthub&amount_earned=" .. tostring(MoneyMadeServer),
--- 		-- 			Method = "GET",
--- 		-- 		})
--- 		-- 	end
--- 		-- end)
--- 	end
+		-- 	if MoneyMadeServer ~= 0 then
+		-- 		local Request = http_request or request or (http and http.request)
+		-- 		Request({
+		-- 			Url = "https://discord.com/api/webhooks/1246290792360706174/AfqWZhO6k5Iy84_qrKKWbd_4VK_0ctalhw6LTReXIsytVIVyBCTW8JYgpXrd6ACuSVTE", 
+		-- 			Body = HttpService:JSONEncode({
+		-- 				["content"] = "A user just earned **$" .. FormatCash(MoneyMadeServer) .. " <:cash:1246291552423247892>**"
+		-- 			}), 
+		-- 			Method = "POST", 
+		-- 			Headers = {
+		-- 				["Content-Type"] = "application/json",
+		-- 			}
+		-- 		})
+		-- 		Request({
+		-- 			Url = "https://api.farmhub.lol/v1/research/money/update?access_token=farthub&amount_earned=" .. tostring(MoneyMadeServer),
+		-- 			Method = "GET",
+		-- 		})
+		-- 	end
+		-- end)
+	end
 
 function GetRejoinPrefferedFunction(...)
 	local prnt = print
@@ -529,54 +529,10 @@ function GetRejoinPrefferedFunction(...)
 	RejoinPreferredServer(...)
 end
 
-local Queued = false
-function ServerSwitch()
-	if not Queued then
-		Queued = true
-	
-		local ScriptFile = GetDirectory() .. "/AutoCrateLoader.lua"
-		local ScriptSaved = game:HttpGet("https://raw.githubusercontent.com/Unknownusername700/Jay/main/Jaykio")
-		SaveFile(tostring(ScriptFile), ScriptSaved)
-		SaveFile("AutoCrateSettings.json", HttpService:JSONEncode(Settings))
-	
-		local Queue = ""
-		
-			Queue = [[getgenv().StartingMoney = ]] .. getgenv().StartingMoney .. [[
-				getgenv().StartingTime = ]] .. getgenv().StartingTime .. [[
-				script_key = "]] .. script_key .. [[";
-				local success, error = pcall(function()
-					loadstring(readfile("]] .. tostring(ScriptFile) .. [["))()
-				end)
-		
-				if not success then
-					if not game:IsLoaded() then 
-						game.Loaded:Wait() 
-						task.wait(1) 
-					end
-		
-					loadstring(game:HttpGet("https://raw.githubusercontent.com/Unknownusername700/Jay/main/Jaykio"))()
-				end
-			]]
-
-		queue_on_teleport(Queue)
-	end
-	
-	GetRejoinPrefferedFunction({
-		SizeSort = "asc",
-		MinPlayers = (Settings.SmallServer and 1 or 12),
-		MaxPlayers = (Settings.SmallServer and 12 or 28),
-		ExcludeFull = true,
-		ExcludeSame = true,
-		MinFps = 0,
-		MaxPing = 0,
-		FpsSortWeight = 0,
-		PingSortWeight = 0,
-		SizeSortWeight = 0,
-		PrintVerbose = false,
-		PrintPrefixTime = false,
-		PrintUseConsoleWindow = false,
-	})
-end
+-- local Queued = false
+-- function ServerSwitch()
+--     print("ServerSwitch Broken/Disabled")
+-- end
 
 -------------------->> Failed Loading <<--------------------
 
@@ -1378,7 +1334,6 @@ local function BigTP(cf, speed)
 			task.wait(1)
 
 			if Raycast(Root.Position + Vector3.new(0, 5, 0), Vector3.new(0, 1000, 0)) then
-				Humanoid.Health = 0
 				return error()
 			end
 
@@ -1386,7 +1341,6 @@ local function BigTP(cf, speed)
 				Mover:Destroy()
 				Noclip:Stop()
 				LagCheck:Stop()
-				Humanoid.Health = 0
 				return error()
 			end
 		end
@@ -1610,8 +1564,6 @@ local function VehicleTP(cframe, leave, offset, speed)
 				if offset == 500 then
 					LagCheck:Stop()
 				end
-
-				Humanoid.Health = 0
 				return error()
 
 			end
@@ -1785,7 +1737,6 @@ end
 
 local function EquipGun(bool)
 	if not Backpack:FindFirstChild(SelectedGun) then return end
-	Backpack[SelectedGun]:SetAttribute("InventoryItemLocalEquipped", bool)
 	Backpack[SelectedGun].InventoryEquipRemote:FireServer(bool)
 end
 
@@ -1876,7 +1827,6 @@ RobberyData.Mansion.Callback = function()
 	ElevatorTP:Disconnect()
 
 	if FailMansion then
-		Humanoid.Health = 0
 		return
 	end
 
@@ -1904,7 +1854,6 @@ RobberyData.Mansion.Callback = function()
 	CutsceneTP:Disconnect()
 
 	if FailedStart then
-		Humanoid.Health = 0
 		return
 	end
 
@@ -2211,7 +2160,6 @@ task.spawn(function()
 		if IsArrested() then
 			SetStatus("Your arrested, switching servers..")
 			task.delay(5, function()
-				Humanoid.Health = 0
 			end)
 			ServerSwitch()
 		end
@@ -2334,17 +2282,11 @@ if Settings.IncludeAirdrops and not Workspace:FindFirstChild("Drop") then
     LoadMap()
 end
 
-Humanoid.Died:Connect(function()
-	SetStatus("You died, switching servers..")
-	ServerSwitch()
-end)
-
 local function FixCoreGui()
 	game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
 		if child.Name == "ErrorPrompt" and child:FindFirstChild("MessageArea") and child.MessageArea:FindFirstChild("ErrorFrame") then
 			SetStatus("Client kicked, switching servers..")
 			task.delay(5, function()
-				Humanoid.Health = 0
 			end)
 			ServerSwitch()
 		end
@@ -2362,7 +2304,6 @@ task.spawn(function()
 	while task.wait(300) do
 		SetStatus("Timed out, switching servers..")
 		task.delay(5, function()
-			Humanoid.Health = 0
 		end)
 		ServerSwitch()
 	end
@@ -2390,6 +2331,5 @@ end
 
 SetStatus("Switching servers..")
 task.delay(5, function()
-	Humanoid.Health = 0
 end)
 ServerSwitch()
